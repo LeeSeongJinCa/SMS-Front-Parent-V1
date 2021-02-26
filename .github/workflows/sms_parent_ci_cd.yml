@@ -1,4 +1,4 @@
-name: SMS Build & Deploy to S3
+name: SMS[Teacher] Build & Deploy to S3
 on:
   push:
     branches:
@@ -41,8 +41,8 @@ jobs:
         run: |
           aws s3 cp \
             --recursive \
-            --region ap-northeast-2 \
-            dist s3://dsm-sms.com
+            --region ${{ secrets.S3_REGION }} \
+            dist s3://${{ secrets.S3_BUCKET_NAME }}
 
       - name: Invalidate Cloudfront
         uses: chetan/invalidate-cloudfront-action@master
