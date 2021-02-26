@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import { Spinner } from "../../../assets";
+import { Spinner } from "../../assets";
 
 interface Props {
   size?: string;

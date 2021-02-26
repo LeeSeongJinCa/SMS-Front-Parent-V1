@@ -5,8 +5,7 @@ import OutingInfo from "./OutingInfo";
 import ParentAction from "./ParentAction";
 
 import { ResOutingInfo } from "../../lib/api/payloads/Parent";
-import { EMERGENCY, NORMAL } from "../../containers/Outing/ApplyContainer";
-import { Loading } from "../default";
+import Loading from "../Loading/Loading";
 
 interface Props {
   loading: boolean;
@@ -14,6 +13,9 @@ interface Props {
   approveOuting: () => void;
   rejectOuting: () => void;
 }
+
+export const NORMAL = "normal" as const;
+export const EMERGENCY = "emergency" as const;
 
 const Approve: FC<Props> = ({
   loading,

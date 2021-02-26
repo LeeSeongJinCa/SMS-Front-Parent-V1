@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 
 import * as S from "./style";
+import { EMERGENCY } from "./Approve";
 
 import { ResOutingInfo } from "../../lib/api/payloads/Parent";
-import { EMERGENCY } from "../../containers/Outing/ApplyContainer";
 
 interface Props {
   outingInfo: ResOutingInfo;
