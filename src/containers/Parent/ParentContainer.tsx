@@ -1,11 +1,11 @@
 import React, { FC, useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { Approve } from "../../components";
 import { ResOutingInfo } from "../../lib/api/payloads/Parent";
-import { getOutingInfo, postOutingAction } from "../../lib/api/Parent";
 import { getAxiosError } from "../../lib/utils";
+import { getOutingInfo, postOutingAction } from "../../lib/api/Parent";
 import Confirm from "../../lib/confirm/confirm";
 import WithLoadingContainer, {
   LoadingProps
@@ -19,6 +19,7 @@ export class ParentActions {
 interface Props extends LoadingProps {}
 
 const ApproveContainer: FC<Props> = ({ loading, startLoading, endLoading }) => {
+  const history = useHistory();
   const { confirmUuid } = useParams<{ confirmUuid: string }>();
   const [outingInfo, setOutingInfo] = useState<ResOutingInfo>({
     outing_uuid: "",
@@ -40,6 +41,7 @@ const ApproveContainer: FC<Props> = ({ loading, startLoading, endLoading }) => {
 
       if (status === 404) {
         toast.error("외출증 코드에 해당하는 외출증이 없습니다.");
+        history.push("/");
       }
     }
     endLoading();
@@ -68,8 +70,10 @@ const ApproveContainer: FC<Props> = ({ loading, startLoading, endLoading }) => {
 
       if (status === 404) {
         toast.error("존재하지 않는 외출증입니다.");
+        history.push("/");
       } else if (status === 409) {
         toast.error("현재 학부모님이 접근할 수 없는 외출증입니다.");
+        history.push("/");
       }
     }
     endLoading();
@@ -85,15 +89,19 @@ const ApproveContainer: FC<Props> = ({ loading, startLoading, endLoading }) => {
     controlOuting(outingInfo.outing_uuid, reject, confirmUuid);
   }, [outingInfo, confirmUuid]);
 
-  useEffect(() => {
-    if (!confirmUuid) return;
-    if (
+  const isInValidConfirmCode = useCallback((confirmUuid: string) => {
+    return (
       confirmUuid.length !== 20 ||
       confirmUuid.substring(0, 7) !== "confirm" ||
       isNaN(+confirmUuid.substring(8, 20))
-    ) {
+    );
+  }, []);
+
+  useEffect(() => {
+    if (!confirmUuid) return;
+    if (isInValidConfirmCode(confirmUuid)) {
       toast.error("잘못된 접근입니다.");
-      location.href = "/login";
+      history.push("/");
     }
   }, [confirmUuid]);
   useEffect(() => {
