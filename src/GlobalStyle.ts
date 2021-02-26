@@ -1,4 +1,4 @@
-import styled, {
+import {
   createGlobalStyle,
   GlobalStyleComponent,
   DefaultTheme
@@ -65,77 +65,4 @@ export const GlobalStyle: GlobalStyleComponent<
   * {
     font-family:"Noto Sans KR" !important;
   }
-
-  .codex-editor__redactor {
-    padding-bottom:0px !important;
-  }
-
-  #editer {
-    height:495px;
-    overflow-y:auto;
-
-    .ce-block__content {
-      max-width:650px;
-      margin:0 auto;
-    }
-
-    h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    display: block;
-    font-weight: bold;
-  }
-
-  h1 {
-    font-size: 2em;
-  }
-
-  h2 {
-    font-size: 1.5em;
-  }
-
-  h3 {
-    font-size: 1.17em;
-  }
-
-  h4 {
-  }
-
-  h5 {
-    font-size: 0.83em;
-  }
-
-  h6 {
-    font-size: 0.67em;
-  }
-  }
-`;
-
-export const GlobalContainer = styled.div`
-  display: flex;
-  min-width: 1480px;
-`;
-
-export const GlobalBody = styled.div`
-  flex: 1;
-  background-color: #f6f6f6;
-  padding-right: 40px;
-  padding-left: 20px;
-  box-sizing: border-box;
-`;
-
-interface IGlobalInnerBody {
-  isBackNeed?: boolean;
-}
-
-export const GlobalInnerBody = styled.div<IGlobalInnerBody>`
-  min-width: 635px;
-  border-radius: 5px;
-  background: ${({ isBackNeed = true }) =>
-    isBackNeed ? "white" : "transparent"};
-  box-shadow: ${({ isBackNeed = true }) =>
-    isBackNeed ? "0px 0px 12px 1px rgba(0, 0, 0, 0.25)" : "none"};
 `;
