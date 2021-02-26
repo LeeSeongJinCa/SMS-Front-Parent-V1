@@ -8,7 +8,7 @@ import { ResDefault } from "../payloads";
 
 export const getOutingInfo = (confirmUuid: string) => {
   return apiDefault().get<ResOutingInfoWithDefault>(
-    `/outings/code/${confirmUuid}`
+    `/outings/code/confirm-${confirmUuid}`
   );
 };
 
@@ -18,7 +18,7 @@ export const postOutingAction = (
   confirmUuid: string
 ) => {
   return apiDefault().post<ResDefault>(
-    `/outings/uuid/${outingUuid}/actions/${action}?code=${confirmUuid}`
+    `/outings/uuid/${outingUuid}/actions/${action}?code=confirm-${confirmUuid}`
   );
 };
 

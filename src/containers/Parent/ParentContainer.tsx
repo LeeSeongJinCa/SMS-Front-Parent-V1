@@ -41,8 +41,8 @@ const ApproveContainer: FC<Props> = ({ loading, startLoading, endLoading }) => {
 
       if (status === 404) {
         toast.error("외출증 코드에 해당하는 외출증이 없습니다.");
-        history.push("/");
       }
+      history.push("/");
     }
     endLoading();
   };
@@ -70,11 +70,10 @@ const ApproveContainer: FC<Props> = ({ loading, startLoading, endLoading }) => {
 
       if (status === 404) {
         toast.error("존재하지 않는 외출증입니다.");
-        history.push("/");
       } else if (status === 409) {
         toast.error("현재 학부모님이 접근할 수 없는 외출증입니다.");
-        history.push("/");
       }
+      history.push("/");
     }
     endLoading();
   };
@@ -90,11 +89,7 @@ const ApproveContainer: FC<Props> = ({ loading, startLoading, endLoading }) => {
   }, [outingInfo, confirmUuid]);
 
   const isInValidConfirmCode = useCallback((confirmUuid: string) => {
-    return (
-      confirmUuid.length !== 20 ||
-      confirmUuid.substring(0, 7) !== "confirm" ||
-      isNaN(+confirmUuid.substring(8, 20))
-    );
+    return confirmUuid.length !== 12 || isNaN(+confirmUuid);
   }, []);
 
   useEffect(() => {

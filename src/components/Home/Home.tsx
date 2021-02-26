@@ -12,7 +12,7 @@ const Home: FC<Props> = () => {
   const [code, setCode] = useState<string>("");
 
   const goApprovePage = (code: string) => {
-    history.push(`/confirm-${code}`);
+    history.push(`/${code}`);
   };
 
   const handleCode = (e: ChangeEvent<HTMLInputElement>) => {
