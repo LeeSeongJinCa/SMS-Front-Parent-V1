@@ -1,7 +1,9 @@
 import { apiDefault } from "../client";
 import { ParentActions } from "../../../containers/Parent/ParentContainer";
-import { ResHistoryWithDefault } from "../payloads/Outing";
-import { ResOutingInfoWithDefault } from "../payloads/Parent";
+import {
+  ResHistoryWithDefault,
+  ResOutingInfoWithDefault
+} from "../payloads/Parent";
 import { ResDefault } from "../payloads";
 
 export const getOutingInfo = (confirmUuid: string) => {
